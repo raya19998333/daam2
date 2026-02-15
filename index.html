@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نماء - لوحة الخدمات</title>
+    <title>بوابة دعم الموظفين - نماء</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -12,20 +12,14 @@
         :root {
             --brand-primary: #724077;
             --brand-light: #9d6ba1;
-            --brand-dark: #5a2f5e;
-            --brand-pale: #f3e5f5;
-            --brand-lighter: #e1bee7;
+            --brand-dark: #4a2a4e;
             --accent-gold: #d4af37;
             --accent-teal: #2dd4bf;
-            --white: #ffffff;
-            --light-bg: #fafafa;
-            --light-gray: #f5f5f5;
-            --border-light: #e0e0e0;
-            --text-dark: #2d2d2d;
-            --text-gray: #757575;
-            --success: #22c55e;
-            --warning: #f59e0b;
-            --danger: #ef4444;
+            --neutral-50: #fafafa;
+            --neutral-100: #f5f5f5;
+            --neutral-200: #e5e5e5;
+            --neutral-800: #262626;
+            --neutral-900: #171717;
         }
 
         * {
@@ -36,991 +30,821 @@
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background: var(--light-bg);
-            color: var(--text-dark);
-            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--neutral-800);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Hero Section with Wave */
-        .hero-section {
-            background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-dark) 50%, var(--brand-light) 100%);
-            padding: 3rem 2rem 8rem;
+        /* Animated Background Orbs */
+        .background-orbs {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--brand-primary);
+            top: -10%;
+            right: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-teal);
+            bottom: -15%;
+            left: -5%;
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent-gold);
+            top: 40%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        /* Header */
+        .header {
             position: relative;
+            background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-primary) 50%, var(--brand-light) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(114, 64, 119, 0.2);
             overflow: hidden;
         }
 
-        .hero-section::after {
+        .header::before {
             content: '';
             position: absolute;
-            bottom: -2px;
+            top: 0;
             left: 0;
-            width: 100%;
-            height: 150px;
-            background: url('data:image/svg+xml,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0,64 C300,120 900,0 1200,64 L1200,120 L0,120 Z" fill="%23fafafa"/></svg>') no-repeat;
-            background-size: cover;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
         }
 
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
+        .header-content {
             position: relative;
             z-index: 1;
         }
 
-        .hero-content {
-            text-align: center;
-            animation: fadeInDown 0.8s ease-out;
+        /* Logo SVG Styles */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        .logo-svg {
+            width: 120px;
+            height: 120px;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .logo-circle-bg {
+            animation: pulse-circle 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-circle {
+            0%, 100% { r: 90; opacity: 0.2; }
+            50% { r: 95; opacity: 0.3; }
+        }
+
+        .logo-circle {
+            stroke-dasharray: 471;
+            stroke-dashoffset: 471;
+            animation: draw-circle 2s ease-out forwards;
+        }
+
+        @keyframes draw-circle {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .logo-symbol {
+            animation: fadeInSymbol 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInSymbol {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .petal-1 { animation: petalFloat 2s ease-in-out infinite; }
+        .petal-2 { animation: petalFloat 2s ease-in-out 0.2s infinite; }
+        .petal-3 { animation: petalFloat 2s ease-in-out 0.4s infinite; }
+        .petal-4 { animation: petalFloat 2s ease-in-out 0.6s infinite; }
+        .petal-5 { animation: petalFloat 2s ease-in-out 0.8s infinite; }
+
+        @keyframes petalFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-5px) scale(1.1); }
+        }
+
+        .branch-left {
+            animation: branchGrow 1.5s ease-out 0.8s both;
+            transform-origin: 100px 100px;
+        }
+
+        .branch-right {
+            animation: branchGrow 1.5s ease-out 1s both;
+            transform-origin: 100px 100px;
+        }
+
+        @keyframes branchGrow {
+            from {
+                stroke-dasharray: 50;
+                stroke-dashoffset: 50;
+            }
+            to {
+                stroke-dasharray: 50;
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .logo {
+            font-family: 'Cairo', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            letter-spacing: 4px;
+            animation: fadeInDown 0.8s ease-out 1.2s both;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .hero-logo {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .hero-title {
-            font-family: 'Cairo', sans-serif;
-            font-size: 3rem;
-            font-weight: 900;
+        /* Browser Warning */
+        .browser-warning {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
             color: white;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.95);
-            font-weight: 300;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
+            padding: 1rem 2rem;
             text-align: center;
-            color: white;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            position: relative;
+            z-index: 10;
+            animation: slideDown 0.6s ease-out;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 900;
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         /* Main Container */
-        .main-container {
+        .container {
             max-width: 1400px;
-            margin: -5rem auto 3rem;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: 3rem 2rem;
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
-        /* Quick Actions Bar */
-        .quick-actions-bar {
-            background: white;
-            border-radius: 25px;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 10px 40px rgba(114, 64, 119, 0.15);
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
             margin-bottom: 3rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            animation: slideUp 0.6s ease-out;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .search-box-main {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
-        }
-
-        .search-input-main {
-            width: 100%;
-            padding: 0.9rem 1.2rem 0.9rem 3.5rem;
-            border: 2px solid var(--border-light);
-            border-radius: 15px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .search-input-main:focus {
-            outline: none;
-            border-color: var(--brand-primary);
-            box-shadow: 0 0 0 4px rgba(114, 64, 119, 0.1);
-        }
-
-        .search-icon-main {
-            position: absolute;
-            right: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-gray);
-            font-size: 1.2rem;
-        }
-
-        .quick-action-btn {
-            padding: 0.9rem 1.5rem;
-            background: var(--brand-pale);
-            border: none;
-            border-radius: 15px;
-            color: var(--brand-primary);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'Tajawal', sans-serif;
-        }
-
-        .quick-action-btn:hover {
-            background: var(--brand-primary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(114, 64, 119, 0.3);
-        }
-
-        /* Dashboard Grid - Bento Box Style */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Large Feature Card */
-        .feature-card-large {
-            grid-column: span 8;
+        .service-card {
             background: white;
-            border-radius: 25px;
+            border-radius: 24px;
             padding: 2.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            animation: fadeInCard 0.6s ease-out 0.1s both;
-        }
-
-        @keyframes fadeInCard {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .feature-card-large::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(114, 64, 119, 0.05) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: between;
-            margin-bottom: 2rem;
-        }
-
-        .card-icon-large {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            box-shadow: 0 8px 25px rgba(114, 64, 119, 0.3);
-            margin-left: 1.5rem;
-        }
-
-        .card-title-section h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--brand-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .card-description {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-
-        .services-grid-inline {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .service-item-inline {
-            padding: 1.25rem;
-            background: var(--light-bg);
-            border: 2px solid transparent;
-            border-radius: 16px;
-            text-decoration: none;
-            color: var(--text-dark);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .service-item-inline:hover {
-            background: white;
-            border-color: var(--brand-primary);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(114, 64, 119, 0.15);
-        }
-
-        .service-icon-small {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .service-info h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .service-info p {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-        }
-
-        /* Side Widget Cards */
-        .widget-card {
-            grid-column: span 4;
-            background: white;
-            border-radius: 25px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            animation: fadeInCard 0.6s ease-out 0.2s both;
-        }
-
-        .widget-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-        }
-
-        .widget-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--brand-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .view-all-link {
-            color: var(--brand-primary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .view-all-link:hover {
-            color: var(--brand-dark);
-        }
-
-        /* Activity Item */
-        .activity-item {
-            display: flex;
-            gap: 1rem;
-            padding: 1rem;
-            border-radius: 12px;
-            margin-bottom: 0.75rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .activity-item:hover {
-            background: var(--brand-pale);
-        }
-
-        .activity-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--accent-teal), #5eead4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .activity-content {
-            flex: 1;
-        }
-
-        .activity-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            color: var(--text-dark);
-        }
-
-        .activity-time {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-        }
-
-        .activity-status {
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .status-success {
-            background: rgba(34, 197, 94, 0.1);
-            color: var(--success);
-        }
-
-        .status-pending {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--warning);
-        }
-
-        /* Services Categories Grid */
-        .categories-section {
-            margin-top: 3rem;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--brand-primary);
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .category-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.6s ease-out both;
-        }
-
-        .category-card:nth-child(1) { animation-delay: 0.1s; }
-        .category-card:nth-child(2) { animation-delay: 0.2s; }
-        .category-card:nth-child(3) { animation-delay: 0.3s; }
-        .category-card:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .category-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(114, 64, 119, 0.05), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .category-card:hover::before {
-            opacity: 1;
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 50px rgba(114, 64, 119, 0.2);
-        }
-
-        .category-icon {
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 6px 20px rgba(114, 64, 119, 0.3);
-            transition: transform 0.4s ease;
-        }
-
-        .category-card:hover .category-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .category-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--brand-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .category-description {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .category-count {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--brand-pale);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--brand-primary);
-        }
-
-        /* Stats Cards */
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            transition: all 0.3s ease;
             animation: fadeInCard 0.6s ease-out both;
         }
 
-        .stat-card:nth-child(1) { animation-delay: 0.1s; }
-        .stat-card:nth-child(2) { animation-delay: 0.2s; }
-        .stat-card:nth-child(3) { animation-delay: 0.3s; }
-        .stat-card:nth-child(4) { animation-delay: 0.4s; }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(114, 64, 119, 0.15);
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(114, 64, 119, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+            transition: transform 0.6s ease;
         }
 
-        .stat-card-icon {
-            width: 60px;
-            height: 60px;
+        .service-card:hover::after {
+            transform: translate(-25%, -25%) scale(1.5);
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInCard {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--brand-primary), var(--brand-light));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        /* Decorative corner pattern */
+        .service-card .service-header::before {
+            content: '';
+            position: absolute;
+            top: -2.5rem;
+            right: -2.5rem;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, transparent 50%, rgba(114, 64, 119, 0.05) 50%);
+            border-radius: 0 0 0 100%;
+            pointer-events: none;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(114, 64, 119, 0.15);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .service-title {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--brand-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
             background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
-            border-radius: 50%;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: white;
+            box-shadow: 0 6px 20px rgba(114, 64, 119, 0.3);
+            transition: transform 0.3s ease;
         }
 
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 900;
+        .service-card:hover .service-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .new-badge {
+            background: linear-gradient(135deg, var(--accent-gold), #f0c14b);
+            color: var(--neutral-900);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .service-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .service-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.5rem;
+            background: var(--neutral-50);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--neutral-800);
+            font-size: 1.05rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            background: linear-gradient(90deg, var(--brand-primary), var(--brand-light));
+            transition: width 0.3s ease;
+            opacity: 0.1;
+        }
+
+        .service-link:hover::before {
+            width: 100%;
+        }
+
+        .service-link:hover {
+            background: white;
+            border-color: var(--brand-primary);
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(114, 64, 119, 0.15);
+        }
+
+        .link-arrow {
+            font-size: 1.3rem;
             color: var(--brand-primary);
-            margin-bottom: 0.5rem;
+            transition: transform 0.3s ease;
         }
 
-        .stat-label {
-            color: var(--text-gray);
-            font-size: 0.95rem;
+        .service-link:hover .link-arrow {
+            transform: translateX(-8px);
+        }
+
+        /* Bottom Actions */
+        .bottom-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .action-button {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--neutral-800);
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--brand-primary), var(--brand-light));
+            opacity: 0.1;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .action-button:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .action-button:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(114, 64, 119, 0.2);
+        }
+
+        .action-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            position: relative;
+            z-index: 1;
         }
 
         /* Footer */
         .footer {
-            background: white;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-            border-top: 1px solid var(--border-light);
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
             text-align: center;
+            padding: 3rem 2rem;
+            color: var(--neutral-800);
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+            margin-top: 4rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(114, 64, 119, 0.03) 100%);
         }
 
-        .footer-logo {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin: 0 auto 1rem;
+        .footer-decoration {
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--brand-primary), var(--accent-gold), var(--brand-primary), transparent);
+            margin: 0 auto 1.5rem;
+            border-radius: 3px;
+            box-shadow: 0 2px 10px rgba(114, 64, 119, 0.3);
         }
 
-        .footer-text {
-            color: var(--text-gray);
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-text strong {
-            color: var(--brand-primary);
-        }
-
-        /* Floating Help Button */
-        .help-fab {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
-            box-shadow: 0 8px 30px rgba(114, 64, 119, 0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 100;
-            border: none;
-        }
-
-        .help-fab:hover {
-            transform: scale(1.15);
-            box-shadow: 0 12px 40px rgba(114, 64, 119, 0.5);
+        .footer p {
+            font-weight: 500;
+            color: var(--brand-dark);
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .feature-card-large {
-                grid-column: span 12;
-            }
-
-            .widget-card {
-                grid-column: span 6;
-            }
-        }
-
         @media (max-width: 768px) {
-            .hero-title {
+            .logo {
                 font-size: 2rem;
             }
 
-            .hero-subtitle {
+            .subtitle {
                 font-size: 1rem;
             }
 
-            .hero-stats {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .service-title {
+                font-size: 1.4rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
-                flex-wrap: wrap;
             }
+        }
 
-            .stat-number {
-                font-size: 2rem;
-            }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
 
-            .main-container {
-                margin-top: -3rem;
-                padding: 0 1rem;
-            }
+        ::-webkit-scrollbar-track {
+            background: var(--neutral-100);
+        }
 
-            .quick-actions-bar {
-                padding: 1rem;
-            }
+        ::-webkit-scrollbar-thumb {
+            background: var(--brand-primary);
+            border-radius: 6px;
+        }
 
-            .search-box-main {
-                min-width: 100%;
-            }
-
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .feature-card-large,
-            .widget-card {
-                grid-column: span 1;
-            }
-
-            .services-grid-inline {
-                grid-template-columns: 1fr;
-            }
-
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-dark);
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-logo">🌱</div>
-                <h1 class="hero-title">نماء</h1>
-                <p class="hero-subtitle">منصتك المتكاملة لجميع خدمات الدعم</p>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">127</span>
-                        <span class="stat-label">طلب نشط</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">95%</span>
-                        <span class="stat-label">معدل الرضا</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">دعم متواصل</span>
-                    </div>
-                </div>
+    <!-- Animated Background -->
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Browser Warning -->
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer Circle with Gradient -->
+                    <defs>
+                        <linearGradient id="logoGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#724077;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#2dd4bf;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#2dd4bf;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#724077;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Background Circle -->
+                    <circle cx="100" cy="100" r="90" fill="url(#logoGrad1)" opacity="0.2" class="logo-circle-bg"/>
+                    
+                    <!-- Main Circle -->
+                    <circle cx="100" cy="100" r="75" fill="none" stroke="url(#logoGrad2)" stroke-width="4" class="logo-circle" filter="url(#glow)"/>
+                    
+                    <!-- Abstract Growth Symbol (Like a Tree/Plant) -->
+                    <g class="logo-symbol">
+                        <!-- Stem -->
+                        <path d="M 100 140 Q 100 100 100 80" stroke="white" stroke-width="5" fill="none" stroke-linecap="round"/>
+                        
+                        <!-- Left Branch -->
+                        <path d="M 100 100 Q 80 90 70 95" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" class="branch-left"/>
+                        
+                        <!-- Right Branch -->
+                        <path d="M 100 100 Q 120 90 130 95" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" class="branch-right"/>
+                        
+                        <!-- Top Leaves/Petals -->
+                        <circle cx="100" cy="70" r="12" fill="#d4af37" opacity="0.9" class="petal-1"/>
+                        <circle cx="85" cy="75" r="10" fill="#2dd4bf" opacity="0.8" class="petal-2"/>
+                        <circle cx="115" cy="75" r="10" fill="#2dd4bf" opacity="0.8" class="petal-3"/>
+                        <circle cx="70" cy="95" r="8" fill="#d4af37" opacity="0.7" class="petal-4"/>
+                        <circle cx="130" cy="95" r="8" fill="#d4af37" opacity="0.7" class="petal-5"/>
+                    </g>
+                </svg>
             </div>
+            <h1 class="logo">نماء</h1>
+            <p class="subtitle">بوابة دعم الموظفين المتكاملة</p>
         </div>
-    </section>
+    </header>
 
     <!-- Main Container -->
-    <div class="main-container">
-        <!-- Quick Actions Bar -->
-        <div class="quick-actions-bar">
-            <div class="search-box-main">
-                <i class="bi bi-search search-icon-main"></i>
-                <input type="text" class="search-input-main" placeholder="ابحث عن خدمة، قسم، أو طلب...">
-            </div>
-            <button class="quick-action-btn">
-                <i class="bi bi-plus-circle-fill"></i>
-                طلب جديد
-            </button>
-            <button class="quick-action-btn">
-                <i class="bi bi-clock-history"></i>
-                طلباتي
-            </button>
-            <button class="quick-action-btn">
-                <i class="bi bi-bookmark-fill"></i>
-                المفضلة
-            </button>
-        </div>
-
-        <!-- Dashboard Grid -->
-        <div class="dashboard-grid">
-            <!-- Large Feature Card - Fleet Services -->
-            <div class="feature-card-large">
-                <div class="card-header">
-                    <div style="display: flex; align-items: center; flex: 1;">
-                        <div class="card-icon-large">
+    <div class="container">
+        <!-- Services Grid -->
+        <div class="services-grid">
+            <!-- Fleet Services -->
+            <div class="service-card">
+                <div class="service-header">
+                    <h2 class="service-title">
+                        <div class="service-icon">
                             <i class="bi bi-car-front-fill"></i>
                         </div>
-                        <div class="card-title-section">
-                            <h2>خدمات الأسطول</h2>
-                            <p class="card-description">إدارة شاملة لجميع احتياجات النقل والمركبات</p>
-                        </div>
-                    </div>
-                    <span class="category-count">
-                        <i class="bi bi-star-fill"></i>
-                        مميزة
-                    </span>
+                        خدمات الأسطول
+                    </h2>
+                    <span class="new-badge">جديد</span>
                 </div>
-
-                <div class="services-grid-inline">
-                    <a href="#" class="service-item-inline">
-                        <div class="service-icon-small">
-                            <i class="bi bi-plus-circle-fill"></i>
-                        </div>
-                        <div class="service-info">
-                            <h4>طلب مركبة</h4>
-                            <p>حجز فوري</p>
-                        </div>
+                <div class="service-links">
+                    <a href="#" class="service-link">
+                        <span><i class="bi bi-plus-circle-fill" style="margin-left: 8px; color: var(--brand-primary);"></i>طلب مركبة</span>
+                        <span class="link-arrow"><i class="bi bi-arrow-left"></i></span>
                     </a>
-                    <a href="#" class="service-item-inline">
-                        <div class="service-icon-small">
-                            <i class="bi bi-wrench-adjustable"></i>
-                        </div>
-                        <div class="service-info">
-                            <h4>صيانة المركبات</h4>
-                            <p>جدولة وتتبع</p>
-                        </div>
+                    <a href="#" class="service-link">
+                        <span><i class="bi bi-wrench-adjustable" style="margin-left: 8px; color: var(--brand-primary);"></i>صيانة المركبات</span>
+                        <span class="link-arrow"><i class="bi bi-arrow-left"></i></span>
                     </a>
-                    <a href="#" class="service-item-inline">
-                        <div class="service-icon-small">
-                            <i class="bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                        <div class="service-info">
-                            <h4>الإبلاغ عن حوادث</h4>
-                            <p>استجابة سريعة</p>
-                        </div>
+                    <a href="#" class="service-link">
+                        <span><i class="bi bi-exclamation-triangle-fill" style="margin-left: 8px; color: var(--brand-primary);"></i>الإبلاغ عن حوادث</span>
+                        <span class="link-arrow"><i class="bi bi-arrow-left"></i></span>
                     </a>
                 </div>
             </div>
 
-            <!-- Recent Activity Widget -->
-            <div class="widget-card">
-                <div class="widget-header">
-                    <h3 class="widget-title">
-                        <i class="bi bi-clock-history"></i>
-                        النشاط الأخير
-                    </h3>
-                    <a href="#" class="view-all-link">عرض الكل</a>
+            <!-- Facility Services -->
+            <div class="service-card">
+                <div class="service-header">
+                    <h2 class="service-title">
+                        <div class="service-icon">
+                            <i class="bi bi-building-fill"></i>
+                        </div>
+                        خدمات المرافق
+                    </h2>
                 </div>
-
-                <div class="activity-item">
-                    <div class="activity-icon">
-                        <i class="bi bi-check-circle-fill"></i>
-                    </div>
-                    <div class="activity-content">
-                        <div class="activity-title">تمت الموافقة على طلب المركبة</div>
-                        <div class="activity-time">منذ 15 دقيقة</div>
-                    </div>
-                    <span class="activity-status status-success">مكتمل</span>
+                <div class="service-links">
+                    <a href="#" class="service-link">
+                        <span><i class="bi bi-briefcase-fill" style="margin-left: 8px; color: var(--brand-primary);"></i>دعم المكتب</span>
+                        <span class="link-arrow"><i class="bi bi-arrow-left"></i></span>
+                    </a>
+                    <a href="#" class="service-link">
+                        <span><i class="bi bi-tools" style="margin-left: 8px; color: var(--brand-primary);"></i>الصيانة العامة</span>
+                        <span class="link-arrow"><i class="bi bi-arrow-left"></i></span>
+                    </a>
+                    <a href="#" class="service-link">
+                        <span><i class="bi bi-truck" style="margin-left: 8px; color: var(--brand-primary);"></i>الدعم اللوجستي</span>
+                        <span class="link-arrow"><i class="bi bi-arrow-left"></i></span>
+                    </a>
                 </div>
+            </div>
 
-                <div class="activity-item">
-                    <div class="activity-icon" style="background: linear-gradient(135deg, var(--warning), #fbbf24);">
-                        <i class="bi bi-hourglass-split"></i>
-                    </div>
-                    <div class="activity-content">
-                        <div class="activity-title">طلب صيانة قيد المعالجة</div>
-                        <div class="activity-time">منذ ساعة</div>
-                    </div>
-                    <span class="activity-status status-pending">معلق</span>
+            <!-- Administrative Services -->
+            <div class="service-card">
+                <div class="service-header">
+                    <h2 class="service-title">
+                        <div class="service-icon">
+                            <i class="bi bi-clipboard-check-fill"></i>
+                        </div>
+                        الخدمات الإدارية
+                    </h2>
+                    <span class="new-badge">جديد</span>
                 </div>
+                <div class="service-links">
+                    <a href="#" class="service-link">
+                        <span><i class="bi bi-file-earmark-text-fill" style="margin-left: 8px; color: var(--brand-primary);"></i>طلب TAR</span>
+                        <span class="link-arrow"><i class="bi bi-arrow-left"></i></span>
+                    </a>
+                    <a href="#" class="service-link">
+                        <span><i class="bi bi-cup-hot-fill" style="margin-left: 8px; color: var(--brand-primary);"></i>المقصف</span>
+                        <span class="link-arrow"><i class="bi bi-arrow-left"></i></span>
+                    </a>
+                    <a href="#" class="service-link">
+                        <span><i class="bi bi-pencil-fill" style="margin-left: 8px; color: var(--brand-primary);"></i>طلب قرطاسية</span>
+                        <span class="link-arrow"><i class="bi bi-arrow-left"></i></span>
+                    </a>
+                    <a href="#" class="service-link">
+                        <span><i class="bi bi-telephone-fill" style="margin-left: 8px; color: var(--brand-primary);"></i>خدمات الاتصالات</span>
+                        <span class="link-arrow"><i class="bi bi-arrow-left"></i></span>
+                    </a>
+                </div>
+            </div>
 
-                <div class="activity-item">
-                    <div class="activity-icon" style="background: linear-gradient(135deg, var(--brand-primary), var(--brand-light));">
-                        <i class="bi bi-file-text"></i>
-                    </div>
-                    <div class="activity-content">
-                        <div class="activity-title">طلب TAR الجديد</div>
-                        <div class="activity-time">منذ 3 ساعات</div>
-                    </div>
-                    <span class="activity-status status-success">مكتمل</span>
+            <!-- IT Services -->
+            <div class="service-card">
+                <div class="service-header">
+                    <h2 class="service-title">
+                        <div class="service-icon">💻</div>
+                        خدمات تقنية المعلومات
+                    </h2>
+                </div>
+                <div class="service-links">
+                    <a href="#" class="service-link">
+                        <span>طلب خدمة IT</span>
+                        <span class="link-arrow">←</span>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- Stats Row -->
-        <div class="stats-row">
-            <div class="stat-card">
-                <div class="stat-card-icon">
-                    <i class="bi bi-clipboard-check"></i>
-                </div>
-                <div class="stat-value">42</div>
-                <div class="stat-label">طلبات مكتملة</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-card-icon">
-                    <i class="bi bi-hourglass-split"></i>
-                </div>
-                <div class="stat-value">8</div>
-                <div class="stat-label">طلبات قيد المعالجة</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-card-icon">
-                    <i class="bi bi-star-fill"></i>
-                </div>
-                <div class="stat-value">4.8</div>
-                <div class="stat-label">تقييم الخدمات</div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-card-icon">
-                    <i class="bi bi-lightning-charge-fill"></i>
-                </div>
-                <div class="stat-value">2س</div>
-                <div class="stat-label">متوسط وقت الاستجابة</div>
-            </div>
+        <!-- Bottom Actions -->
+        <div class="bottom-actions">
+            <a href="#" class="action-button">
+                <span class="action-icon">💡</span>
+                الاقتراحات
+            </a>
+            <a href="#" class="action-button">
+                <span class="action-icon">📊</span>
+                التقارير
+            </a>
         </div>
-
-        <!-- Categories Section -->
-        <section class="categories-section">
-            <div class="section-header">
-                <h2 class="section-title">جميع الخدمات</h2>
-                <a href="#" class="view-all-link">استكشاف المزيد ←</a>
-            </div>
-
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="bi bi-building-fill"></i>
-                    </div>
-                    <h3 class="category-title">خدمات المرافق</h3>
-                    <p class="category-description">دعم المكتب، الصيانة العامة، والدعم اللوجستي</p>
-                    <span class="category-count">
-                        <i class="bi bi-grid-3x3-gap-fill"></i>
-                        3 خدمات
-                    </span>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="bi bi-clipboard-check-fill"></i>
-                    </div>
-                    <h3 class="category-title">الخدمات الإدارية</h3>
-                    <p class="category-description">طلبات TAR، المقصف، القرطاسية والاتصالات</p>
-                    <span class="category-count">
-                        <i class="bi bi-grid-3x3-gap-fill"></i>
-                        4 خدمات
-                    </span>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">💻</div>
-                    <h3 class="category-title">خدمات IT</h3>
-                    <p class="category-description">الدعم التقني والمساعدة في تقنية المعلومات</p>
-                    <span class="category-count">
-                        <i class="bi bi-grid-3x3-gap-fill"></i>
-                        1 خدمة
-                    </span>
-                </div>
-
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="bi bi-lightbulb-fill"></i>
-                    </div>
-                    <h3 class="category-title">الاقتراحات والتقارير</h3>
-                    <p class="category-description">شارك أفكارك واطلع على التقارير</p>
-                    <span class="category-count">
-                        <i class="bi bi-grid-3x3-gap-fill"></i>
-                        2 خدمة
-                    </span>
-                </div>
-            </div>
-        </section>
     </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-logo">🌱</div>
-            <p class="footer-text"><strong>نماء</strong> - نمو مستدام، مستقبل مزدهر</p>
-            <p class="footer-text" style="font-size: 0.85rem; opacity: 0.7;">© 2024 جميع الحقوق محفوظة</p>
-        </div>
+        <div class="footer-decoration"></div>
+        <p><strong>نماء</strong> - نمو مستدام، مستقبل مزدهر</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.7;">© 2024 جميع الحقوق محفوظة</p>
     </footer>
 
-    <!-- Floating Help Button -->
-    <button class="help-fab" title="المساعدة">
-        <i class="bi bi-question-circle-fill"></i>
-    </button>
-
     <script>
-        // Search functionality
-        const searchInput = document.querySelector('.search-input-main');
-        searchInput.addEventListener('focus', function() {
-            this.parentElement.parentElement.style.transform = 'scale(1.01)';
-        });
-        searchInput.addEventListener('blur', function() {
-            this.parentElement.parentElement.style.transform = '';
-        });
-
-        // Quick action buttons
-        document.querySelectorAll('.quick-action-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-        });
-
-        // Category cards interaction
-        document.querySelectorAll('.category-card').forEach(card => {
-            card.addEventListener('click', function() {
-                console.log('Category clicked:', this.querySelector('.category-title').textContent);
-            });
-        });
-
-        // Help FAB
-        document.querySelector('.help-fab').addEventListener('click', function() {
-            alert('مرحباً! كيف يمكننا مساعدتك اليوم؟');
-        });
-
-        // Activity items interaction
-        document.querySelectorAll('.activity-item').forEach(item => {
-            item.addEventListener('click', function() {
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-        });
-
-        // Service items interaction
-        document.querySelectorAll('.service-item-inline').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                console.log('Service clicked:', this.querySelector('h4').textContent);
-            });
-        });
-
-        // Smooth scroll for links
+        // Add smooth scroll behavior
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
+        });
+
+        // Add hover sound effect (optional)
+        const serviceLinks = document.querySelectorAll('.service-link, .action-button');
+        serviceLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.setProperty('--hover-scale', '1');
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .action-button').forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>
