@@ -11,13 +11,12 @@
     <style>
         :root { --brand-primary: #724077; --brand-light: #9d6ba1; --brand-dark: #5a2f5e; --brand-pale: #f3e5f5; --accent-teal: #2dd4bf; --white: #ffffff; --light-bg: #fafafa; --border-light: #e0e0e0; --text-dark: #2d2d2d; --text-gray: #757575; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Tajawal', sans-serif; background: var(--light-bg); color: var(--text-dark); min-height: 100vh; top: 0 !important; }
+        body { font-family: 'Tajawal', sans-serif; background: var(--light-bg); color: var(--text-dark); min-height: 100vh; }
         .language-switcher { position: fixed; top: 2rem; left: 2rem; z-index: 10000; background: white; border-radius: 50px; padding: 0.5rem; box-shadow: 0 8px 30px rgba(114, 64, 119, 0.2); display: flex; gap: 0.5rem; animation: slideInLeft 0.6s ease-out; }
         @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
         .lang-btn-custom { padding: 0.6rem 1.2rem; border: none; border-radius: 25px; background: transparent; color: #2d2d2d; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: 'Tajawal', sans-serif; }
         .lang-btn-custom:hover { background: #f3e5f5; }
         .lang-btn-custom.active { background: linear-gradient(135deg, #724077, #9d6ba1); color: white; box-shadow: 0 4px 15px rgba(114, 64, 119, 0.3); }
-        #google_translate_element, .goog-te-banner-frame, .skiptranslate iframe, body > .skiptranslate { display: none !important; }
         .hero-section { background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-dark) 50%, var(--brand-light) 100%); padding: 3rem 2rem 8rem; position: relative; overflow: hidden; }
         .hero-section::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 150px; background: url('data:image/svg+xml,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0,64 C300,120 900,0 1200,64 L1200,120 L0,120 Z" fill="%23fafafa"/></svg>') no-repeat; background-size: cover; }
         .hero-container { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
@@ -25,8 +24,6 @@
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
         .hero-logo { width: 200px; height: 160px; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; }
         .hero-logo img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1); }
-        .hero-title { font-family: 'Cairo', sans-serif; font-size: 3rem; font-weight: 900; color: white; margin-bottom: 0.5rem; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-        .hero-subtitle { font-size: 1.3rem; color: rgba(255,255,255,0.95); font-weight: 300; }
         .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 2rem; }
         .stat-item { text-align: center; color: white; }
         .stat-number { font-size: 2.5rem; font-weight: 900; display: block; margin-bottom: 0.25rem; }
@@ -77,51 +74,77 @@
         .stat-card-icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--brand-primary), var(--brand-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.8rem; color: white; }
         .stat-value { font-size: 2.5rem; font-weight: 900; color: var(--brand-primary); margin-bottom: 0.5rem; }
         .stat-label { color: var(--text-gray); font-size: 0.95rem; }
-        .footer { background: white; padding: 3rem 2rem; margin-top: 4rem; border-top: 1px solid var(--border-light); }
-        .footer-container { max-width: 1400px; margin: 0 auto; text-align: center; }
-        .footer-logo { width: 120px; height: 100px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
-        .footer-logo img { width: 100%; height: 100%; object-fit: contain; }
-        .footer-text { color: var(--text-gray); margin-bottom: 0.5rem; }
-        .footer-text strong { color: var(--brand-primary); }
+
+        /* ===== FOOTER ===== */
+        .footer { background: linear-gradient(135deg, #2d1a2e 0%, #3d2040 50%, #4a2550 100%); padding: 3rem 2rem 1.5rem; margin-top: 4rem; position: relative; overflow: hidden; }
+        .footer::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #724077, #9d6ba1, #d4af37, #9d6ba1, #724077); background-size: 200% 100%; animation: shimmer 3s linear infinite; }
+        @keyframes shimmer { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
+        .footer::after { content: ''; position: absolute; bottom: -60px; left: -60px; width: 200px; height: 200px; border-radius: 50%; background: rgba(157, 107, 161, 0.08); pointer-events: none; }
+        .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 2rem; position: relative; z-index: 1; }
+        .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .footer-link { color: rgba(255, 255, 255, 0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; }
+        .footer-link:hover { color: #d4af37; }
+        .footer-brand { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+        .footer-logo-wrap { width: 90px; height: 75px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 0.75rem; backdrop-filter: blur(10px); transition: all 0.3s ease; }
+        .footer-logo-wrap:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        .footer-logo-wrap img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(1); }
+        .footer-brand-name { font-size: 1.4rem; font-weight: 900; color: white; letter-spacing: 0.5px; }
+        .footer-brand-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.65); font-weight: 300; }
+        .footer-right { display: flex; justify-content: flex-end; align-items: center; gap: 0.75rem; }
+        .footer-social-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); font-size: 1rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
+        .footer-social-btn:hover { background: rgba(114,64,119,0.5); border-color: rgba(157,107,161,0.6); color: white; transform: translateY(-3px); }
+        .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 2rem 0 1.25rem; }
+        .footer-bottom { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; flex-wrap: wrap; gap: 0.5rem; }
+        .footer-copyright { font-size: 0.82rem; color: rgba(255,255,255,0.35); }
+        .footer-copyright strong { color: rgba(157,107,161,0.8); }
+        .footer-badge { font-size: 0.78rem; color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); padding: 0.3rem 0.8rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.08); }
+
         @media (max-width: 768px) {
-            .hero-title { font-size: 2rem; } .hero-subtitle { font-size: 1rem; } .hero-stats { gap: 1.5rem; flex-wrap: wrap; } .stat-number { font-size: 2rem; }
+            .hero-stats { gap: 1.5rem; flex-wrap: wrap; } .stat-number { font-size: 2rem; }
             .main-container { margin-top: -3rem; padding: 0 1rem; } .service-section { padding: 2rem 1.5rem; }
             .services-categories { grid-template-columns: repeat(2, 1fr); } .sub-service-tabs { flex-direction: column; }
             .sub-tab-btn { width: 100%; justify-content: center; } .form-row { grid-template-columns: 1fr; } .form-actions { flex-direction: column; }
             .hero-logo { width: 140px; height: 120px; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-links { justify-content: center; } .footer-right { justify-content: center; }
+            .footer-bottom { justify-content: center; text-align: center; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Language Switcher -->
     <div class="language-switcher">
-        <button class="lang-btn-custom active" onclick="translatePage('ar')">🇸🇦 العربية</button>
-        <button class="lang-btn-custom" onclick="translatePage('en')">🇬🇧 English</button>
+        <button class="lang-btn-custom active" id="btn-ar" onclick="setLang('ar')">🇸🇦 العربية</button>
+        <button class="lang-btn-custom" id="btn-en" onclick="setLang('en')">🇬🇧 English</button>
     </div>
-    <div id="google_translate_element"></div>
+
+    <!-- Hero -->
     <section class="hero-section">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-logo">  
+                <div class="hero-logo">
                     <img src="logo.png" alt="نماء Logo" width="450" height="500">
                 </div>
-     
                 <div class="hero-stats">
-                    <div class="stat-item"><span class="stat-number">127</span><span class="stat-label">طلب نشط</span></div>
-                    <div class="stat-item"><span class="stat-number">95%</span><span class="stat-label">معدل الرضا</span></div>
-                    <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label">دعم متواصل</span></div>
+                    <div class="stat-item"><span class="stat-number">127</span><span class="stat-label" data-ar="طلب نشط" data-en="Active Requests">طلب نشط</span></div>
+                    <div class="stat-item"><span class="stat-number">95%</span><span class="stat-label" data-ar="معدل الرضا" data-en="Satisfaction Rate">معدل الرضا</span></div>
+                    <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label" data-ar="دعم متواصل" data-en="Continuous Support">دعم متواصل</span></div>
                 </div>
             </div>
         </div>
     </section>
+
     <div class="main-container">
+        <!-- Nav -->
         <div class="services-nav">
-            <h3 class="services-nav-title">اختر القسم المطلوب</h3>
+            <h3 class="services-nav-title" data-ar="اختر القسم المطلوب" data-en="Select a Section">اختر القسم المطلوب</h3>
             <div class="services-categories">
-                <button class="category-nav-btn active" data-category="fleet"><span class="category-nav-icon"><i class="bi bi-car-front-fill"></i></span><span>خدمات الأسطول</span></button>
-                <button class="category-nav-btn" data-category="facility"><span class="category-nav-icon"><i class="bi bi-building-fill"></i></span><span>خدمات المرافق</span></button>
-                <button class="category-nav-btn" data-category="admin"><span class="category-nav-icon"><i class="bi bi-clipboard-check-fill"></i></span><span>الخدمات الإدارية</span></button>
-                <button class="category-nav-btn" data-category="it"><span class="category-nav-icon">💻</span><span>خدمات IT</span></button>
-                <button class="category-nav-btn" data-category="other"><span class="category-nav-icon"><i class="bi bi-lightbulb-fill"></i></span><span>اقتراحات وتقارير</span></button>
+                <button class="category-nav-btn active" data-category="fleet"><span class="category-nav-icon"><i class="bi bi-car-front-fill"></i></span><span data-ar="خدمات الأسطول" data-en="Fleet Services">خدمات الأسطول</span></button>
+                <button class="category-nav-btn" data-category="facility"><span class="category-nav-icon"><i class="bi bi-building-fill"></i></span><span data-ar="خدمات المرافق" data-en="Facility Services">خدمات المرافق</span></button>
+                <button class="category-nav-btn" data-category="admin"><span class="category-nav-icon"><i class="bi bi-clipboard-check-fill"></i></span><span data-ar="الخدمات الإدارية" data-en="Admin Services">الخدمات الإدارية</span></button>
+                <button class="category-nav-btn" data-category="it"><span class="category-nav-icon">💻</span><span data-ar="خدمات IT" data-en="IT Services">خدمات IT</span></button>
+                <button class="category-nav-btn" data-category="other"><span class="category-nav-icon"><i class="bi bi-lightbulb-fill"></i></span><span data-ar="اقتراحات وتقارير" data-en="Suggestions & Reports">اقتراحات وتقارير</span></button>
             </div>
         </div>
 
@@ -129,94 +152,122 @@
         <div class="service-section active" id="fleet-section">
             <div class="service-header">
                 <div class="service-icon-large"><i class="bi bi-car-front-fill"></i></div>
-                <div class="service-header-title"><h2>خدمات الأسطول</h2><p>إدارة شاملة لجميع احتياجات النقل والمركبات</p></div>
+                <div class="service-header-title">
+                    <h2 data-ar="خدمات الأسطول" data-en="Fleet Services">خدمات الأسطول</h2>
+                    <p data-ar="إدارة شاملة لجميع احتياجات النقل والمركبات" data-en="Comprehensive management of all transportation and vehicle needs">إدارة شاملة لجميع احتياجات النقل والمركبات</p>
+                </div>
             </div>
             <div class="sub-service-tabs">
-                <button class="sub-tab-btn active" data-subtab="fleet-vehicle"><i class="bi bi-plus-circle-fill"></i> طلب مركبة</button>
-                <button class="sub-tab-btn" data-subtab="fleet-maintenance"><i class="bi bi-wrench-adjustable"></i> صيانة المركبات</button>
-                <button class="sub-tab-btn" data-subtab="fleet-incident"><i class="bi bi-exclamation-triangle-fill"></i> الإبلاغ عن حوادث</button>
+                <button class="sub-tab-btn active" data-subtab="fleet-vehicle"><i class="bi bi-plus-circle-fill"></i> <span data-ar="طلب مركبة" data-en="Request Vehicle">طلب مركبة</span></button>
+                <button class="sub-tab-btn" data-subtab="fleet-maintenance"><i class="bi bi-wrench-adjustable"></i> <span data-ar="صيانة المركبات" data-en="Vehicle Maintenance">صيانة المركبات</span></button>
+                <button class="sub-tab-btn" data-subtab="fleet-incident"><i class="bi bi-exclamation-triangle-fill"></i> <span data-ar="الإبلاغ عن حوادث" data-en="Report Incidents">الإبلاغ عن حوادث</span></button>
             </div>
+            <!-- Request Vehicle -->
             <div class="form-content active" id="fleet-vehicle">
-                <div class="info-alert"><strong>ملاحظة:</strong> يرجى تقديم الطلب قبل 24 ساعة من موعد الاستخدام</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="يرجى تقديم الطلب قبل 24 ساعة من موعد الاستخدام" data-en="Please submit the request 24 hours before the scheduled use">يرجى تقديم الطلب قبل 24 ساعة من موعد الاستخدام</span></div>
                 <form class="service-form" data-service="fleet-vehicle">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" name="fullName" required></div>
-                            <div class="form-group"><label>رقم الموظف <span class="required">*</span></label><input type="text" class="form-control" name="employeeId" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" name="fullName" required></div>
+                            <div class="form-group"><label><span data-ar="رقم الموظف" data-en="Employee ID">رقم الموظف</span> <span class="required">*</span></label><input type="text" class="form-control" name="employeeId" required></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>القسم <span class="required">*</span></label><select class="form-control" name="department" required><option value="">اختر القسم</option><option value="it">تقنية المعلومات</option><option value="hr">الموارد البشرية</option><option value="finance">المالية</option><option value="operations">العمليات</option></select></div>
-                            <div class="form-group"><label>رقم الهاتف <span class="required">*</span></label><input type="tel" class="form-control" name="phone" required></div>
+                            <div class="form-group"><label><span data-ar="القسم" data-en="Department">القسم</span> <span class="required">*</span></label>
+                                <select class="form-control" name="department" required>
+                                    <option value="" data-ar="اختر القسم" data-en="Select Department">اختر القسم</option>
+                                    <option value="it" data-ar="تقنية المعلومات" data-en="Information Technology">تقنية المعلومات</option>
+                                    <option value="hr" data-ar="الموارد البشرية" data-en="Human Resources">الموارد البشرية</option>
+                                    <option value="finance" data-ar="المالية" data-en="Finance">المالية</option>
+                                    <option value="operations" data-ar="العمليات" data-en="Operations">العمليات</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label><span data-ar="رقم الهاتف" data-en="Phone Number">رقم الهاتف</span> <span class="required">*</span></label><input type="tel" class="form-control" name="phone" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-calendar-check"></i></span>تفاصيل الحجز</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-calendar-check"></i></span><span data-ar="تفاصيل الحجز" data-en="Booking Details">تفاصيل الحجز</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>نوع المركبة <span class="required">*</span></label><select class="form-control" name="vehicleType" required><option value="">اختر نوع المركبة</option><option value="sedan">سيدان</option><option value="suv">SUV</option><option value="van">فان</option></select></div>
-                            <div class="form-group"><label>تاريخ الاستخدام <span class="required">*</span></label><input type="date" class="form-control" name="usageDate" required></div>
+                            <div class="form-group"><label><span data-ar="نوع المركبة" data-en="Vehicle Type">نوع المركبة</span> <span class="required">*</span></label>
+                                <select class="form-control" name="vehicleType" required>
+                                    <option value="" data-ar="اختر نوع المركبة" data-en="Select Vehicle Type">اختر نوع المركبة</option>
+                                    <option value="sedan" data-ar="سيدان" data-en="Sedan">سيدان</option>
+                                    <option value="suv" data-ar="SUV" data-en="SUV">SUV</option>
+                                    <option value="van" data-ar="فان" data-en="Van">فان</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label><span data-ar="تاريخ الاستخدام" data-en="Usage Date">تاريخ الاستخدام</span> <span class="required">*</span></label><input type="date" class="form-control" name="usageDate" required></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>وقت البدء <span class="required">*</span></label><input type="time" class="form-control" name="startTime" required></div>
-                            <div class="form-group"><label>الوجهة <span class="required">*</span></label><input type="text" class="form-control" name="destination" required></div>
+                            <div class="form-group"><label><span data-ar="وقت البدء" data-en="Start Time">وقت البدء</span> <span class="required">*</span></label><input type="time" class="form-control" name="startTime" required></div>
+                            <div class="form-group"><label><span data-ar="الوجهة" data-en="Destination">الوجهة</span> <span class="required">*</span></label><input type="text" class="form-control" name="destination" required></div>
                         </div>
-                        <div class="form-group"><label>ملاحظات إضافية</label><textarea class="form-control" name="notes"></textarea></div>
+                        <div class="form-group"><label><span data-ar="ملاحظات إضافية" data-en="Additional Notes">ملاحظات إضافية</span></label><textarea class="form-control" name="notes"></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الطلب</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
+            <!-- Maintenance -->
             <div class="form-content" id="fleet-maintenance">
-                <div class="info-alert"><strong>ملاحظة:</strong> حدد نوع الصيانة واشرح المشكلة بالتفصيل</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="حدد نوع الصيانة واشرح المشكلة بالتفصيل" data-en="Specify the maintenance type and describe the problem in detail">حدد نوع الصيانة واشرح المشكلة بالتفصيل</span></div>
                 <form class="service-form" data-service="fleet-maintenance">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>رقم الموظف <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="رقم الموظف" data-en="Employee ID">رقم الموظف</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-wrench"></i></span>تفاصيل الصيانة</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-wrench"></i></span><span data-ar="تفاصيل الصيانة" data-en="Maintenance Details">تفاصيل الصيانة</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>رقم المركبة <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>نوع الصيانة <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>صيانة دورية</option><option>إصلاح</option><option>طارئة</option></select></div>
+                            <div class="form-group"><label><span data-ar="رقم المركبة" data-en="Vehicle Number">رقم المركبة</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="نوع الصيانة" data-en="Maintenance Type">نوع الصيانة</span> <span class="required">*</span></label>
+                                <select class="form-control" required>
+                                    <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                    <option data-ar="صيانة دورية" data-en="Periodic Maintenance">صيانة دورية</option>
+                                    <option data-ar="إصلاح" data-en="Repair">إصلاح</option>
+                                    <option data-ar="طارئة" data-en="Emergency">طارئة</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group"><label>وصف المشكلة <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <div class="form-group"><label><span data-ar="وصف المشكلة" data-en="Problem Description">وصف المشكلة</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الطلب</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
+            <!-- Incident -->
             <div class="form-content" id="fleet-incident">
-                <div class="info-alert"><strong>ملاحظة:</strong> يرجى الإبلاغ عن الحوادث فوراً</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="يرجى الإبلاغ عن الحوادث فوراً" data-en="Please report incidents immediately">يرجى الإبلاغ عن الحوادث فوراً</span></div>
                 <form class="service-form" data-service="fleet-incident">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>رقم الموظف <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="رقم الموظف" data-en="Employee ID">رقم الموظف</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-exclamation-triangle"></i></span>تفاصيل الحادث</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-exclamation-triangle"></i></span><span data-ar="تفاصيل الحادث" data-en="Incident Details">تفاصيل الحادث</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>رقم المركبة <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>تاريخ الحادث <span class="required">*</span></label><input type="date" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="رقم المركبة" data-en="Vehicle Number">رقم المركبة</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="تاريخ الحادث" data-en="Incident Date">تاريخ الحادث</span> <span class="required">*</span></label><input type="date" class="form-control" required></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>وقت الحادث <span class="required">*</span></label><input type="time" class="form-control" required></div>
-                            <div class="form-group"><label>الموقع <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="وقت الحادث" data-en="Incident Time">وقت الحادث</span> <span class="required">*</span></label><input type="time" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الموقع" data-en="Location">الموقع</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
-                        <div class="form-group"><label>وصف الحادث <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <div class="form-group"><label><span data-ar="وصف الحادث" data-en="Incident Description">وصف الحادث</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال التقرير</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال التقرير" data-en="Submit Report">إرسال التقرير</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
@@ -226,86 +277,112 @@
         <div class="service-section" id="facility-section">
             <div class="service-header">
                 <div class="service-icon-large"><i class="bi bi-building-fill"></i></div>
-                <div class="service-header-title"><h2>خدمات المرافق</h2><p>دعم المكتب، الصيانة العامة، والدعم اللوجستي</p></div>
+                <div class="service-header-title">
+                    <h2 data-ar="خدمات المرافق" data-en="Facility Services">خدمات المرافق</h2>
+                    <p data-ar="دعم المكتب، الصيانة العامة، والدعم اللوجستي" data-en="Office support, general maintenance, and logistics support">دعم المكتب، الصيانة العامة، والدعم اللوجستي</p>
+                </div>
             </div>
             <div class="sub-service-tabs">
-                <button class="sub-tab-btn active" data-subtab="facility-office"><i class="bi bi-briefcase-fill"></i> دعم المكتب</button>
-                <button class="sub-tab-btn" data-subtab="facility-maintenance"><i class="bi bi-tools"></i> الصيانة العامة</button>
-                <button class="sub-tab-btn" data-subtab="facility-logistics"><i class="bi bi-truck"></i> الدعم اللوجستي</button>
+                <button class="sub-tab-btn active" data-subtab="facility-office"><i class="bi bi-briefcase-fill"></i> <span data-ar="دعم المكتب" data-en="Office Support">دعم المكتب</span></button>
+                <button class="sub-tab-btn" data-subtab="facility-maintenance"><i class="bi bi-tools"></i> <span data-ar="الصيانة العامة" data-en="General Maintenance">الصيانة العامة</span></button>
+                <button class="sub-tab-btn" data-subtab="facility-logistics"><i class="bi bi-truck"></i> <span data-ar="الدعم اللوجستي" data-en="Logistics Support">الدعم اللوجستي</span></button>
             </div>
             <div class="form-content active" id="facility-office">
-                <div class="info-alert"><strong>ملاحظة:</strong> حدد نوع دعم المكتب المطلوب</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="حدد نوع دعم المكتب المطلوب" data-en="Specify the type of office support needed">حدد نوع دعم المكتب المطلوب</span></div>
                 <form class="service-form" data-service="facility-office">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>رقم الموظف <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="رقم الموظف" data-en="Employee ID">رقم الموظف</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-briefcase"></i></span>تفاصيل الطلب</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-briefcase"></i></span><span data-ar="تفاصيل الطلب" data-en="Request Details">تفاصيل الطلب</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>نوع الطلب <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>أثاث</option><option>معدات مكتبية</option><option>نقل مكتب</option><option>تجهيز مكتب</option></select></div>
-                            <div class="form-group"><label>رقم المكتب <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="نوع الطلب" data-en="Request Type">نوع الطلب</span> <span class="required">*</span></label>
+                                <select class="form-control" required>
+                                    <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                    <option data-ar="أثاث" data-en="Furniture">أثاث</option>
+                                    <option data-ar="معدات مكتبية" data-en="Office Equipment">معدات مكتبية</option>
+                                    <option data-ar="نقل مكتب" data-en="Office Relocation">نقل مكتب</option>
+                                    <option data-ar="تجهيز مكتب" data-en="Office Setup">تجهيز مكتب</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label><span data-ar="رقم المكتب" data-en="Office Number">رقم المكتب</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
-                        <div class="form-group"><label>تفاصيل الطلب <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <div class="form-group"><label><span data-ar="تفاصيل الطلب" data-en="Request Details">تفاصيل الطلب</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الطلب</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
             <div class="form-content" id="facility-maintenance">
-                <div class="info-alert"><strong>ملاحظة:</strong> اشرح المشكلة بدقة لسرعة الاستجابة</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="اشرح المشكلة بدقة لسرعة الاستجابة" data-en="Describe the problem precisely for faster response">اشرح المشكلة بدقة لسرعة الاستجابة</span></div>
                 <form class="service-form" data-service="facility-maintenance">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>رقم الهاتف <span class="required">*</span></label><input type="tel" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="رقم الهاتف" data-en="Phone Number">رقم الهاتف</span> <span class="required">*</span></label><input type="tel" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-tools"></i></span>تفاصيل المشكلة</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-tools"></i></span><span data-ar="تفاصيل المشكلة" data-en="Problem Details">تفاصيل المشكلة</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>نوع الصيانة <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>كهرباء</option><option>سباكة</option><option>تكييف</option><option>أخرى</option></select></div>
-                            <div class="form-group"><label>الموقع <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="نوع الصيانة" data-en="Maintenance Type">نوع الصيانة</span> <span class="required">*</span></label>
+                                <select class="form-control" required>
+                                    <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                    <option data-ar="كهرباء" data-en="Electrical">كهرباء</option>
+                                    <option data-ar="سباكة" data-en="Plumbing">سباكة</option>
+                                    <option data-ar="تكييف" data-en="Air Conditioning">تكييف</option>
+                                    <option data-ar="أخرى" data-en="Other">أخرى</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label><span data-ar="الموقع" data-en="Location">الموقع</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
-                        <div class="form-group"><label>وصف المشكلة <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <div class="form-group"><label><span data-ar="وصف المشكلة" data-en="Problem Description">وصف المشكلة</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الطلب</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
             <div class="form-content" id="facility-logistics">
-                <div class="info-alert"><strong>ملاحظة:</strong> حدد التفاصيل بدقة لضمان الخدمة السريعة</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="حدد التفاصيل بدقة لضمان الخدمة السريعة" data-en="Specify details precisely to ensure fast service">حدد التفاصيل بدقة لضمان الخدمة السريعة</span></div>
                 <form class="service-form" data-service="facility-logistics">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>رقم الهاتف <span class="required">*</span></label><input type="tel" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="رقم الهاتف" data-en="Phone Number">رقم الهاتف</span> <span class="required">*</span></label><input type="tel" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-truck"></i></span>تفاصيل الطلب اللوجستي</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-truck"></i></span><span data-ar="تفاصيل الطلب اللوجستي" data-en="Logistics Request Details">تفاصيل الطلب اللوجستي</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>نوع الخدمة <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>شحن</option><option>توصيل</option><option>نقل معدات</option></select></div>
-                            <div class="form-group"><label>التاريخ المطلوب <span class="required">*</span></label><input type="date" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="نوع الخدمة" data-en="Service Type">نوع الخدمة</span> <span class="required">*</span></label>
+                                <select class="form-control" required>
+                                    <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                    <option data-ar="شحن" data-en="Shipping">شحن</option>
+                                    <option data-ar="توصيل" data-en="Delivery">توصيل</option>
+                                    <option data-ar="نقل معدات" data-en="Equipment Transfer">نقل معدات</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label><span data-ar="التاريخ المطلوب" data-en="Required Date">التاريخ المطلوب</span> <span class="required">*</span></label><input type="date" class="form-control" required></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>من (الموقع) <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>إلى (الوجهة) <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="من (الموقع)" data-en="From (Location)">من (الموقع)</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="إلى (الوجهة)" data-en="To (Destination)">إلى (الوجهة)</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
-                        <div class="form-group"><label>وصف المواد <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <div class="form-group"><label><span data-ar="وصف المواد" data-en="Materials Description">وصف المواد</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الطلب</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
@@ -315,106 +392,141 @@
         <div class="service-section" id="admin-section">
             <div class="service-header">
                 <div class="service-icon-large"><i class="bi bi-clipboard-check-fill"></i></div>
-                <div class="service-header-title"><h2>الخدمات الإدارية</h2><p>طلبات TAR، المقصف، القرطاسية والاتصالات</p></div>
+                <div class="service-header-title">
+                    <h2 data-ar="الخدمات الإدارية" data-en="Administrative Services">الخدمات الإدارية</h2>
+                    <p data-ar="طلبات TAR، المقصف، القرطاسية والاتصالات" data-en="TAR requests, canteen, stationery and communications">طلبات TAR، المقصف، القرطاسية والاتصالات</p>
+                </div>
             </div>
             <div class="sub-service-tabs">
-                <button class="sub-tab-btn active" data-subtab="admin-tar"><i class="bi bi-file-earmark-text"></i> طلب TAR</button>
-                <button class="sub-tab-btn" data-subtab="admin-canteen"><i class="bi bi-cup-hot-fill"></i> المقصف</button>
-                <button class="sub-tab-btn" data-subtab="admin-stationery"><i class="bi bi-pencil-fill"></i> طلب قرطاسية</button>
-                <button class="sub-tab-btn" data-subtab="admin-telecom"><i class="bi bi-telephone-fill"></i> خدمات الاتصالات</button>
+                <button class="sub-tab-btn active" data-subtab="admin-tar"><i class="bi bi-file-earmark-text"></i> <span data-ar="طلب TAR" data-en="TAR Request">طلب TAR</span></button>
+                <button class="sub-tab-btn" data-subtab="admin-canteen"><i class="bi bi-cup-hot-fill"></i> <span data-ar="المقصف" data-en="Canteen">المقصف</span></button>
+                <button class="sub-tab-btn" data-subtab="admin-stationery"><i class="bi bi-pencil-fill"></i> <span data-ar="طلب قرطاسية" data-en="Stationery Request">طلب قرطاسية</span></button>
+                <button class="sub-tab-btn" data-subtab="admin-telecom"><i class="bi bi-telephone-fill"></i> <span data-ar="خدمات الاتصالات" data-en="Telecom Services">خدمات الاتصالات</span></button>
             </div>
             <div class="form-content active" id="admin-tar">
-                <div class="info-alert"><strong>ملاحظة:</strong> تقديم طلب تقرير المهام والأنشطة</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="تقديم طلب تقرير المهام والأنشطة" data-en="Submit a Task and Activity Report request">تقديم طلب تقرير المهام والأنشطة</span></div>
                 <form class="service-form" data-service="admin-tar">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>رقم الموظف <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="رقم الموظف" data-en="Employee ID">رقم الموظف</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-calendar-event"></i></span>تفاصيل النشاط</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-calendar-event"></i></span><span data-ar="تفاصيل النشاط" data-en="Activity Details">تفاصيل النشاط</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>نوع النشاط <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>اجتماع</option><option>تدريب</option><option>مؤتمر</option><option>زيارة ميدانية</option></select></div>
-                            <div class="form-group"><label>التاريخ <span class="required">*</span></label><input type="date" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="نوع النشاط" data-en="Activity Type">نوع النشاط</span> <span class="required">*</span></label>
+                                <select class="form-control" required>
+                                    <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                    <option data-ar="اجتماع" data-en="Meeting">اجتماع</option>
+                                    <option data-ar="تدريب" data-en="Training">تدريب</option>
+                                    <option data-ar="مؤتمر" data-en="Conference">مؤتمر</option>
+                                    <option data-ar="زيارة ميدانية" data-en="Field Visit">زيارة ميدانية</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label><span data-ar="التاريخ" data-en="Date">التاريخ</span> <span class="required">*</span></label><input type="date" class="form-control" required></div>
                         </div>
-                        <div class="form-group"><label>عنوان النشاط <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                        <div class="form-group"><label>الوصف التفصيلي <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <div class="form-group"><label><span data-ar="عنوان النشاط" data-en="Activity Title">عنوان النشاط</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                        <div class="form-group"><label><span data-ar="الوصف التفصيلي" data-en="Detailed Description">الوصف التفصيلي</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الطلب</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
             <div class="form-content" id="admin-canteen">
-                <div class="info-alert"><strong>ملاحظة:</strong> حدد نوع الطلب والتسليم المطلوب</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="حدد نوع الطلب والتسليم المطلوب" data-en="Specify the order type and required delivery">حدد نوع الطلب والتسليم المطلوب</span></div>
                 <form class="service-form" data-service="admin-canteen">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>رقم الهاتف <span class="required">*</span></label><input type="tel" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="رقم الهاتف" data-en="Phone Number">رقم الهاتف</span> <span class="required">*</span></label><input type="tel" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-cup-hot"></i></span>تفاصيل الطلب</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-cup-hot"></i></span><span data-ar="تفاصيل الطلب" data-en="Order Details">تفاصيل الطلب</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>نوع الطلب <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>إفطار</option><option>غداء</option><option>وجبة خفيفة</option><option>مشروبات</option></select></div>
-                            <div class="form-group"><label>تاريخ التسليم <span class="required">*</span></label><input type="date" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="نوع الطلب" data-en="Order Type">نوع الطلب</span> <span class="required">*</span></label>
+                                <select class="form-control" required>
+                                    <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                    <option data-ar="إفطار" data-en="Breakfast">إفطار</option>
+                                    <option data-ar="غداء" data-en="Lunch">غداء</option>
+                                    <option data-ar="وجبة خفيفة" data-en="Snack">وجبة خفيفة</option>
+                                    <option data-ar="مشروبات" data-en="Beverages">مشروبات</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label><span data-ar="تاريخ التسليم" data-en="Delivery Date">تاريخ التسليم</span> <span class="required">*</span></label><input type="date" class="form-control" required></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>وقت التسليم <span class="required">*</span></label><input type="time" class="form-control" required></div>
-                            <div class="form-group"><label>موقع التسليم <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="وقت التسليم" data-en="Delivery Time">وقت التسليم</span> <span class="required">*</span></label><input type="time" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="موقع التسليم" data-en="Delivery Location">موقع التسليم</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
-                        <div class="form-group"><label>تفاصيل الطلب <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <div class="form-group"><label><span data-ar="تفاصيل الطلب" data-en="Order Details">تفاصيل الطلب</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الطلب</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
             <div class="form-content" id="admin-stationery">
-                <div class="info-alert"><strong>ملاحظة:</strong> حدد المواد المطلوبة بدقة</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="حدد المواد المطلوبة بدقة" data-en="Specify required materials precisely">حدد المواد المطلوبة بدقة</span></div>
                 <form class="service-form" data-service="admin-stationery">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>القسم <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="القسم" data-en="Department">القسم</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-pencil"></i></span>تفاصيل الطلب</h3>
-                        <div class="form-group"><label>نوع القرطاسية <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>أقلام</option><option>أوراق</option><option>ملفات</option><option>دفاتر</option></select></div>
-                        <div class="form-group"><label>قائمة المواد المطلوبة <span class="required">*</span></label><textarea class="form-control" required placeholder="مثال: أقلام زرقاء: 10، دفاتر A4: 5"></textarea></div>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-pencil"></i></span><span data-ar="تفاصيل الطلب" data-en="Request Details">تفاصيل الطلب</span></h3>
+                        <div class="form-group"><label><span data-ar="نوع القرطاسية" data-en="Stationery Type">نوع القرطاسية</span> <span class="required">*</span></label>
+                            <select class="form-control" required>
+                                <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                <option data-ar="أقلام" data-en="Pens">أقلام</option>
+                                <option data-ar="أوراق" data-en="Paper">أوراق</option>
+                                <option data-ar="ملفات" data-en="Folders">ملفات</option>
+                                <option data-ar="دفاتر" data-en="Notebooks">دفاتر</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label><span data-ar="قائمة المواد المطلوبة" data-en="Required Materials List">قائمة المواد المطلوبة</span> <span class="required">*</span></label><textarea class="form-control" required placeholder="مثال: أقلام زرقاء: 10، دفاتر A4: 5"></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الطلب</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
             <div class="form-content" id="admin-telecom">
-                <div class="info-alert"><strong>ملاحظة:</strong> حدد نوع خدمة الاتصالات المطلوبة</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="حدد نوع خدمة الاتصالات المطلوبة" data-en="Specify the type of telecom service needed">حدد نوع خدمة الاتصالات المطلوبة</span></div>
                 <form class="service-form" data-service="admin-telecom">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>رقم المكتب <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="رقم المكتب" data-en="Office Number">رقم المكتب</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-telephone"></i></span>تفاصيل الطلب</h3>
-                        <div class="form-group"><label>نوع الطلب <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>خط جديد</option><option>تمديد خط</option><option>هاتف محمول</option><option>إصلاح</option></select></div>
-                        <div class="form-group"><label>وصف الطلب <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-telephone"></i></span><span data-ar="تفاصيل الطلب" data-en="Request Details">تفاصيل الطلب</span></h3>
+                        <div class="form-group"><label><span data-ar="نوع الطلب" data-en="Request Type">نوع الطلب</span> <span class="required">*</span></label>
+                            <select class="form-control" required>
+                                <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                <option data-ar="خط جديد" data-en="New Line">خط جديد</option>
+                                <option data-ar="تمديد خط" data-en="Line Extension">تمديد خط</option>
+                                <option data-ar="هاتف محمول" data-en="Mobile Phone">هاتف محمول</option>
+                                <option data-ar="إصلاح" data-en="Repair">إصلاح</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label><span data-ar="وصف الطلب" data-en="Request Description">وصف الطلب</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الطلب</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
@@ -424,30 +536,50 @@
         <div class="service-section" id="it-section">
             <div class="service-header">
                 <div class="service-icon-large">💻</div>
-                <div class="service-header-title"><h2>خدمات تقنية المعلومات</h2><p>الدعم التقني والمساعدة في تقنية المعلومات</p></div>
+                <div class="service-header-title">
+                    <h2 data-ar="خدمات تقنية المعلومات" data-en="IT Services">خدمات تقنية المعلومات</h2>
+                    <p data-ar="الدعم التقني والمساعدة في تقنية المعلومات" data-en="Technical support and IT assistance">الدعم التقني والمساعدة في تقنية المعلومات</p>
+                </div>
             </div>
             <div class="form-content active">
-                <div class="info-alert"><strong>ملاحظة:</strong> اشرح المشكلة التقنية بالتفصيل</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="اشرح المشكلة التقنية بالتفصيل" data-en="Describe the technical problem in detail">اشرح المشكلة التقنية بالتفصيل</span></div>
                 <form class="service-form" data-service="it-service">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>رقم الموظف <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="رقم الموظف" data-en="Employee ID">رقم الموظف</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-laptop"></i></span>تفاصيل المشكلة</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-laptop"></i></span><span data-ar="تفاصيل المشكلة" data-en="Problem Details">تفاصيل المشكلة</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>نوع الطلب <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>مشكلة في الأجهزة</option><option>مشكلة في البرامج</option><option>مشكلة في الشبكة</option><option>صلاحيات وصول</option><option>البريد الإلكتروني</option></select></div>
-                            <div class="form-group"><label>مستوى الأولوية <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>منخفضة</option><option>متوسطة</option><option>عالية</option><option>حرجة</option></select></div>
+                            <div class="form-group"><label><span data-ar="نوع الطلب" data-en="Request Type">نوع الطلب</span> <span class="required">*</span></label>
+                                <select class="form-control" required>
+                                    <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                    <option data-ar="مشكلة في الأجهزة" data-en="Hardware Issue">مشكلة في الأجهزة</option>
+                                    <option data-ar="مشكلة في البرامج" data-en="Software Issue">مشكلة في البرامج</option>
+                                    <option data-ar="مشكلة في الشبكة" data-en="Network Issue">مشكلة في الشبكة</option>
+                                    <option data-ar="صلاحيات وصول" data-en="Access Permissions">صلاحيات وصول</option>
+                                    <option data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label><span data-ar="مستوى الأولوية" data-en="Priority Level">مستوى الأولوية</span> <span class="required">*</span></label>
+                                <select class="form-control" required>
+                                    <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                    <option data-ar="منخفضة" data-en="Low">منخفضة</option>
+                                    <option data-ar="متوسطة" data-en="Medium">متوسطة</option>
+                                    <option data-ar="عالية" data-en="High">عالية</option>
+                                    <option data-ar="حرجة" data-en="Critical">حرجة</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group"><label>عنوان المشكلة <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                        <div class="form-group"><label>وصف تفصيلي للمشكلة <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <div class="form-group"><label><span data-ar="عنوان المشكلة" data-en="Issue Title">عنوان المشكلة</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                        <div class="form-group"><label><span data-ar="وصف تفصيلي للمشكلة" data-en="Detailed Problem Description">وصف تفصيلي للمشكلة</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الطلب</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
@@ -457,361 +589,214 @@
         <div class="service-section" id="other-section">
             <div class="service-header">
                 <div class="service-icon-large"><i class="bi bi-lightbulb-fill"></i></div>
-                <div class="service-header-title"><h2>الاقتراحات والتقارير</h2><p>شارك أفكارك واطلع على التقارير</p></div>
+                <div class="service-header-title">
+                    <h2 data-ar="الاقتراحات والتقارير" data-en="Suggestions & Reports">الاقتراحات والتقارير</h2>
+                    <p data-ar="شارك أفكارك واطلع على التقارير" data-en="Share your ideas and view reports">شارك أفكارك واطلع على التقارير</p>
+                </div>
             </div>
             <div class="sub-service-tabs">
-                <button class="sub-tab-btn active" data-subtab="other-suggestions"><i class="bi bi-lightbulb"></i> الاقتراحات</button>
-                <button class="sub-tab-btn" data-subtab="other-reports"><i class="bi bi-file-bar-graph"></i> التقارير</button>
+                <button class="sub-tab-btn active" data-subtab="other-suggestions"><i class="bi bi-lightbulb"></i> <span data-ar="الاقتراحات" data-en="Suggestions">الاقتراحات</span></button>
+                <button class="sub-tab-btn" data-subtab="other-reports"><i class="bi bi-file-bar-graph"></i> <span data-ar="التقارير" data-en="Reports">التقارير</span></button>
             </div>
             <div class="form-content active" id="other-suggestions">
-                <div class="info-alert"><strong>ملاحظة:</strong> شارك أفكارك لتحسين العمل</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="شارك أفكارك لتحسين العمل" data-en="Share your ideas to improve work">شارك أفكارك لتحسين العمل</span></div>
                 <form class="service-form" data-service="suggestions">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>القسم <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="القسم" data-en="Department">القسم</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-lightbulb"></i></span>تفاصيل الاقتراح</h3>
-                        <div class="form-group"><label>فئة الاقتراح <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>تحسين العمليات</option><option>تطوير الخدمات</option><option>تقنية</option><option>بيئة العمل</option></select></div>
-                        <div class="form-group"><label>عنوان الاقتراح <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                        <div class="form-group"><label>تفاصيل الاقتراح <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
-                        <div class="form-group"><label>الفوائد المتوقعة <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-lightbulb"></i></span><span data-ar="تفاصيل الاقتراح" data-en="Suggestion Details">تفاصيل الاقتراح</span></h3>
+                        <div class="form-group"><label><span data-ar="فئة الاقتراح" data-en="Suggestion Category">فئة الاقتراح</span> <span class="required">*</span></label>
+                            <select class="form-control" required>
+                                <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                <option data-ar="تحسين العمليات" data-en="Process Improvement">تحسين العمليات</option>
+                                <option data-ar="تطوير الخدمات" data-en="Service Development">تطوير الخدمات</option>
+                                <option data-ar="تقنية" data-en="Technology">تقنية</option>
+                                <option data-ar="بيئة العمل" data-en="Work Environment">بيئة العمل</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label><span data-ar="عنوان الاقتراح" data-en="Suggestion Title">عنوان الاقتراح</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                        <div class="form-group"><label><span data-ar="تفاصيل الاقتراح" data-en="Suggestion Details">تفاصيل الاقتراح</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <div class="form-group"><label><span data-ar="الفوائد المتوقعة" data-en="Expected Benefits">الفوائد المتوقعة</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الاقتراح</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الاقتراح" data-en="Submit Suggestion">إرسال الاقتراح</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
             <div class="form-content" id="other-reports">
-                <div class="info-alert"><strong>ملاحظة:</strong> حدد نوع التقرير المطلوب</div>
+                <div class="info-alert"><strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong> <span data-ar="حدد نوع التقرير المطلوب" data-en="Specify the type of report needed">حدد نوع التقرير المطلوب</span></div>
                 <form class="service-form" data-service="reports">
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span>معلومات الموظف</h3>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-person-fill"></i></span><span data-ar="معلومات الموظف" data-en="Employee Information">معلومات الموظف</span></h3>
                         <div class="form-row">
-                            <div class="form-group"><label>الاسم الكامل <span class="required">*</span></label><input type="text" class="form-control" required></div>
-                            <div class="form-group"><label>القسم <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="القسم" data-en="Department">القسم</span> <span class="required">*</span></label><input type="text" class="form-control" required></div>
                         </div>
                     </div>
                     <div class="form-section">
-                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-file-bar-graph"></i></span>تفاصيل طلب التقرير</h3>
-                        <div class="form-group"><label>نوع التقرير <span class="required">*</span></label><select class="form-control" required><option value="">اختر</option><option>تقارير الأسطول</option><option>تقارير المرافق</option><option>تقارير إدارية</option><option>تقارير IT</option></select></div>
-                        <div class="form-row">
-                            <div class="form-group"><label>الفترة من <span class="required">*</span></label><input type="date" class="form-control" required></div>
-                            <div class="form-group"><label>الفترة إلى <span class="required">*</span></label><input type="date" class="form-control" required></div>
+                        <h3 class="section-title"><span class="section-icon"><i class="bi bi-file-bar-graph"></i></span><span data-ar="تفاصيل طلب التقرير" data-en="Report Request Details">تفاصيل طلب التقرير</span></h3>
+                        <div class="form-group"><label><span data-ar="نوع التقرير" data-en="Report Type">نوع التقرير</span> <span class="required">*</span></label>
+                            <select class="form-control" required>
+                                <option value="" data-ar="اختر" data-en="Select">اختر</option>
+                                <option data-ar="تقارير الأسطول" data-en="Fleet Reports">تقارير الأسطول</option>
+                                <option data-ar="تقارير المرافق" data-en="Facility Reports">تقارير المرافق</option>
+                                <option data-ar="تقارير إدارية" data-en="Administrative Reports">تقارير إدارية</option>
+                                <option data-ar="تقارير IT" data-en="IT Reports">تقارير IT</option>
+                            </select>
                         </div>
-                        <div class="form-group"><label>تفاصيل التقرير المطلوب <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
+                        <div class="form-row">
+                            <div class="form-group"><label><span data-ar="الفترة من" data-en="From">الفترة من</span> <span class="required">*</span></label><input type="date" class="form-control" required></div>
+                            <div class="form-group"><label><span data-ar="الفترة إلى" data-en="To">الفترة إلى</span> <span class="required">*</span></label><input type="date" class="form-control" required></div>
+                        </div>
+                        <div class="form-group"><label><span data-ar="تفاصيل التقرير المطلوب" data-en="Required Report Details">تفاصيل التقرير المطلوب</span> <span class="required">*</span></label><textarea class="form-control" required></textarea></div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> إرسال الطلب</button>
-                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> إعادة تعيين</button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> <span data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</span></button>
+                        <button type="reset" class="btn btn-secondary"><i class="bi bi-arrow-clockwise"></i> <span data-ar="إعادة تعيين" data-en="Reset">إعادة تعيين</span></button>
                     </div>
                 </form>
             </div>
         </div>
 
+        <!-- Stats -->
         <div class="stats-row">
-            <div class="stat-card"><div class="stat-card-icon"><i class="bi bi-clipboard-check"></i></div><div class="stat-value">42</div><div class="stat-label">طلبات مكتملة</div></div>
-            <div class="stat-card"><div class="stat-card-icon"><i class="bi bi-hourglass-split"></i></div><div class="stat-value">8</div><div class="stat-label">طلبات قيد المعالجة</div></div>
-            <div class="stat-card"><div class="stat-card-icon"><i class="bi bi-star-fill"></i></div><div class="stat-value">4.8</div><div class="stat-label">تقييم الخدمات</div></div>
-            <div class="stat-card"><div class="stat-card-icon"><i class="bi bi-lightning-charge-fill"></i></div><div class="stat-value">2س</div><div class="stat-label">متوسط وقت الاستجابة</div></div>
+            <div class="stat-card"><div class="stat-card-icon"><i class="bi bi-clipboard-check"></i></div><div class="stat-value">42</div><div class="stat-label" data-ar="طلبات مكتملة" data-en="Completed Requests">طلبات مكتملة</div></div>
+            <div class="stat-card"><div class="stat-card-icon"><i class="bi bi-hourglass-split"></i></div><div class="stat-value">8</div><div class="stat-label" data-ar="طلبات قيد المعالجة" data-en="Requests In Progress">طلبات قيد المعالجة</div></div>
+            <div class="stat-card"><div class="stat-card-icon"><i class="bi bi-star-fill"></i></div><div class="stat-value">4.8</div><div class="stat-label" data-ar="تقييم الخدمات" data-en="Service Rating">تقييم الخدمات</div></div>
+            <div class="stat-card"><div class="stat-card-icon"><i class="bi bi-lightning-charge-fill"></i></div><div class="stat-value" data-ar="2س" data-en="2h">2س</div><div class="stat-label" data-ar="متوسط وقت الاستجابة" data-en="Average Response Time">متوسط وقت الاستجابة</div></div>
         </div>
     </div>
 
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        body { margin: 0; font-family: 'Tajawal', sans-serif; background: #f5f5f5; }
-
-        .footer {
-            background: linear-gradient(135deg, #2d1a2e 0%, #3d2040 50%, #4a2550 100%);
-            padding: 3rem 2rem 1.5rem;
-            margin-top: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Decorative top wave */
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 4px;
-            background: linear-gradient(90deg, #724077, #9d6ba1, #d4af37, #9d6ba1, #724077);
-            background-size: 200% 100%;
-            animation: shimmer 3s linear infinite;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 200% 0%; }
-        }
-
-        /* Decorative background circles */
-        .footer::after {
-            content: '';
-            position: absolute;
-            bottom: -60px; left: -60px;
-            width: 200px; height: 200px;
-            border-radius: 50%;
-            background: rgba(157, 107, 161, 0.08);
-            pointer-events: none;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Left section - links or empty */
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: #d4af37;
-        }
-
-        /* Center - logo + brand */
-        .footer-brand {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .footer-logo-wrap {
-            width: 90px;
-            height: 75px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 18px;
-            padding: 0.75rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .footer-logo-wrap:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-
-        .footer-logo-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
-        }
-
-        .footer-brand-name {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: white;
-            letter-spacing: 0.5px;
-        }
-
-        .footer-brand-tagline {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.65);
-            font-weight: 300;
-        }
-
-        /* Right section - social or contact */
-        .footer-right {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .footer-social-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.7);
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .footer-social-btn:hover {
-            background: rgba(114, 64, 119, 0.5);
-            border-color: rgba(157, 107, 161, 0.6);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* Divider */
-        .footer-divider {
-            border: none;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            margin: 2rem 0 1.25rem;
-        }
-
-        /* Copyright bar */
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .footer-copyright {
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.35);
-        }
-
-        .footer-copyright strong {
-            color: rgba(157, 107, 161, 0.8);
-        }
-
-        .footer-badge {
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.3);
-            background: rgba(255,255,255,0.05);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        @media (max-width: 768px) {
-            .footer-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .footer-links { justify-content: center; }
-            .footer-right { justify-content: center; }
-            .footer-bottom { justify-content: center; text-align: center; }
-        }
-    </style>
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-</head>
-<body>
-
-<footer class="footer">
-    <div class="footer-container">
-
-        <!-- Right: Nav Links -->
-        <div class="footer-links">
-            <a href="#" class="footer-link">سياسة الخصوصية</a>
-            <a href="#" class="footer-link">شروط الاستخدام</a>
-            <a href="#" class="footer-link">تواصل معنا</a>
-        </div>
-
-        <!-- Center: Logo + Brand -->
-        <div class="footer-brand">
-            <div class="footer-logo-wrap">
-                <img src="logo1.png" alt="نماء لوجو">
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#" class="footer-link" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a>
+                <a href="#" class="footer-link" data-ar="شروط الاستخدام" data-en="Terms of Use">شروط الاستخدام</a>
+                <a href="#" class="footer-link" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
             </div>
-            <div class="footer-brand-name">نماء</div>
-            <div class="footer-brand-tagline">نمو مستدام، مستقبل مزدهر</div>
+            <div class="footer-brand">
+                <div class="footer-logo-wrap">
+                    <img src="logo1.png" alt="نماء لوجو">
+                </div>
+                <div class="footer-brand-name" data-ar="نماء" data-en="Namaa">نماء</div>
+                <div class="footer-brand-tagline" data-ar="نمو مستدام، مستقبل مزدهر" data-en="Sustainable Growth, Prosperous Future">نمو مستدام، مستقبل مزدهر</div>
+            </div>
+            <div class="footer-right">
+                <a href="#" class="footer-social-btn"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="footer-social-btn"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="footer-social-btn"><i class="bi bi-envelope-fill"></i></a>
+            </div>
         </div>
-
-        <!-- Left: Social Icons -->
-        <div class="footer-right">
-            <a href="#" class="footer-social-btn"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="footer-social-btn"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="footer-social-btn"><i class="bi bi-envelope-fill"></i></a>
+        <hr class="footer-divider">
+        <div class="footer-bottom">
+            <span class="footer-copyright">© 2024 <span data-ar="جميع الحقوق محفوظة لـ" data-en="All rights reserved to"></span><strong data-ar="نماء" data-en="Namaa"> نماء</strong></span>
+            <span class="footer-badge" data-ar="v1.0.0 · بوابة الخدمات الشاملة" data-en="v1.0.0 · Comprehensive Services Portal">v1.0.0 · بوابة الخدمات الشاملة</span>
         </div>
+    </footer>
 
-    </div>
-
-    <hr class="footer-divider">
-
-    <div class="footer-bottom">
-        <span class="footer-copyright">© 2024 جميع الحقوق محفوظة لـ <strong>نماء</strong></span>
-        <span class="footer-badge">v1.0.0 · بوابة الخدمات الشاملة</span>
-    </div>
-</footer>
-
-</body>
-</html>
     <script>
-        const categoryBtns = document.querySelectorAll('.category-nav-btn');
-        const serviceSections = document.querySelectorAll('.service-section');
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const category = btn.getAttribute('data-category');
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                serviceSections.forEach(s => s.classList.remove('active'));
+        // ===== TRANSLATION SYSTEM =====
+        var currentLang = 'ar';
+
+        function setLang(lang) {
+            if (currentLang === lang) return;
+            currentLang = lang;
+
+            // Toggle button states
+            document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+            // Set document direction and language
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+
+            // Translate all elements with data-ar / data-en attributes
+            document.querySelectorAll('[data-ar][data-en]').forEach(function(el) {
+                var text = el.getAttribute('data-' + lang);
+                if (text) {
+                    // For anchors/links, update text content but preserve child elements
+                    if (el.children.length === 0) {
+                        el.textContent = text;
+                    } else {
+                        // Only update if it's a simple text node scenario
+                        el.textContent = text;
+                    }
+                }
+            });
+
+            // Update select option texts
+            document.querySelectorAll('select option[data-ar][data-en]').forEach(function(opt) {
+                var text = opt.getAttribute('data-' + lang);
+                if (text) opt.textContent = text;
+            });
+
+            // Update page title
+            document.title = lang === 'ar'
+                ? 'نماء - بوابة الخدمات الشاملة'
+                : 'Namaa - Comprehensive Services Portal';
+
+            // Adjust select arrow position for LTR
+            document.querySelectorAll('select.form-control').forEach(function(sel) {
+                sel.style.backgroundPosition = lang === 'ar' ? 'left 1rem center' : 'right 1rem center';
+                sel.style.paddingLeft = lang === 'ar' ? '3rem' : '1.2rem';
+                sel.style.paddingRight = lang === 'ar' ? '1.2rem' : '3rem';
+            });
+
+            // Success alert message
+            window._successMsg = lang === 'ar'
+                ? 'تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً.'
+                : 'Your request has been submitted successfully! We will contact you soon.';
+        }
+
+        // Init success message
+        window._successMsg = 'تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً.';
+
+        // ===== SECTION NAVIGATION =====
+        document.querySelectorAll('.category-nav-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var category = btn.getAttribute('data-category');
+                document.querySelectorAll('.category-nav-btn').forEach(function(b) { b.classList.remove('active'); });
+                document.querySelectorAll('.service-section').forEach(function(s) { s.classList.remove('active'); });
                 btn.classList.add('active');
-                document.getElementById(category + '-section').classList.add('active');
-                document.getElementById(category + '-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                var section = document.getElementById(category + '-section');
+                section.classList.add('active');
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
-        document.querySelectorAll('.sub-tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const subtab = btn.getAttribute('data-subtab');
-                const parentSection = btn.closest('.service-section');
-                parentSection.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
-                parentSection.querySelectorAll('.form-content').forEach(f => f.classList.remove('active'));
+
+        // ===== SUB-TAB NAVIGATION =====
+        document.querySelectorAll('.sub-tab-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var subtab = btn.getAttribute('data-subtab');
+                var parentSection = btn.closest('.service-section');
+                parentSection.querySelectorAll('.sub-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+                parentSection.querySelectorAll('.form-content').forEach(function(f) { f.classList.remove('active'); });
                 btn.classList.add('active');
                 document.getElementById(subtab).classList.add('active');
             });
         });
-        document.querySelectorAll('.service-form').forEach(form => {
+
+        // ===== FORM SUBMIT =====
+        document.querySelectorAll('.service-form').forEach(function(form) {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً.');
+                alert(window._successMsg || 'تم إرسال طلبك بنجاح!');
                 this.reset();
             });
         });
-        const today = new Date().toISOString().split('T')[0];
-        document.querySelectorAll('input[type="date"]').forEach(input => {
+
+        // ===== DATE MIN =====
+        var today = new Date().toISOString().split('T')[0];
+        document.querySelectorAll('input[type="date"]').forEach(function(input) {
             input.setAttribute('min', today);
         });
-        var currentLang = 'ar';
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({ pageLanguage: 'ar', includedLanguages: 'ar,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element');
-        }
-        function translatePage(lang) {
-            if (currentLang === lang) return;
-            currentLang = lang;
-            document.querySelectorAll('.lang-btn-custom').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            document.documentElement.lang = lang;
-            setTimeout(() => { var select = document.querySelector('.goog-te-combo'); if (select) { select.value = lang; select.dispatchEvent(new Event('change')); } }, 500);
-        }
     </script>
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
